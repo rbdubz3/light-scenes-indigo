@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<Actions>
+    <Action id="startScene" deviceFilter="indigo.dimmer">
+        <Name>Start Scene</Name>
+        <CallbackMethod>startScene</CallbackMethod>
+        <ConfigUI>
+            <Field id="sceneId" type="menu" defaultValue="">
+                <Label>Scene:</Label>
+                <List class="self" method="activeSceneListGenerator"></List>
+            </Field>
+            <Field id="sceneIdLabel" type="label" alignWithControl="false" fontSize="small" fontColor="darkgray">
+                <Label>Select the Scene preset to activate for the particular Indigo Dimmer Device.</Label>
+            </Field>
+        </ConfigUI>
+    </Action>
+    <Action id="stopScene" deviceFilter="indigo.dimmer">
+        <Name>Stop Scene</Name>
+        <CallbackMethod>stopScene</CallbackMethod>
+    </Action>
+</Actions>
