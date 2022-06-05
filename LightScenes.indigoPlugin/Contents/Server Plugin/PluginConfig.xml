@@ -7,4 +7,14 @@
 		<Label>Enable debugging:</Label>
 		<Description>(not recommended)</Description>
 	</Field>
+    <Field id="pollingInterval" type="menu" defaultValue="10">
+        <Label>Scene Update Polling Interval:</Label>
+        <List>
+            <Option value="5">5 Secs</Option>
+            <Option value="10">10 Secs</Option>
+            <Option value="20">20 Secs</Option>
+            <Option value="30">30 Secs</Option>
+            <Option value="60">60 Secs</Option>
+        </List>
+    </Field>  
 </PluginConfig>
