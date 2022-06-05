@@ -40,6 +40,7 @@ class Plugin(indigo.PluginBase):
     def __init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs):
         super(Plugin, self).__init__(pluginId, pluginDisplayName, pluginVersion, pluginPrefs)
         self.debug = pluginPrefs.get("showDebugInfo", False)
+        self.pollingInterval = int(self.pluginPrefs.get("pollingInterval", 10))
         self.deviceList = []
         self.deviceThreads = []
         self.threadLock = threading.Lock()
@@ -294,7 +295,7 @@ class Plugin(indigo.PluginBase):
                             self.threadLock.release()
 
                 # TODO should sleep the minimum of all sleeps for the scenes
-                self.sleep(10)
+                self.sleep(self.pollingInterval)
 
                 try:
                     while self.sceneQueue.empty() == False:
@@ -843,6 +844,14 @@ class Plugin(indigo.PluginBase):
         self.debugLog("...stopSceneThread Total remaining scene threads - " + str(sceneThreadCount))
         return stoppedThread
 
+
+    ########################################
+    # ConfigUI methods
+    ########################################
+
+    def closedPrefsConfigUi(self, valuesDict, userCancelled):
+        if not userCancelled:
+            self.pollingInterval = int(valuesDict.get(u"pollingInterval", 10))
 
     ########################################
     def update(self, device):
